@@ -1,5 +1,7 @@
 package com.jacat.First2DGame;
 
+import com.jacat.First2DGame.graphics.Screen;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -18,12 +20,16 @@ public class Game extends Canvas implements Runnable{
 	private JFrame frame;
 	private boolean running = false;
 
+	private Screen screen;
+
 	private BufferedImage image = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
 	private int[] pixel = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
 
 	public Game() {
 		Dimension size = new Dimension(width * scale, height * scale);
 		setPreferredSize(size);
+
+		screen = new Screen(width,height);
 
 		frame = new JFrame();
 	}
