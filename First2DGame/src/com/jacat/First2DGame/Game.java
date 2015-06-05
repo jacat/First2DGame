@@ -13,7 +13,7 @@ public class Game extends Canvas implements Runnable{
 
 
 	public static int width = 300;
-	public static int height = width / 16 * 9;
+	public static int height = 168;
 	public static int scale = 3;
 
 	private Thread thread;
@@ -66,9 +66,18 @@ public class Game extends Canvas implements Runnable{
 			return;
 		}
 
+		screen.clear();
+
+		screen.render();
+
+		for(int i = 0; i < pixel.length; i ++) {
+			pixel[i] = screen.pixels[i];
+		}
+
 		Graphics g = bs.getDrawGraphics();
 		g.setColor(Color.BLACK);
 		g.fillRect(0,0,getWidth(),getHeight());
+		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 		g.dispose();
 		bs.show();
 
