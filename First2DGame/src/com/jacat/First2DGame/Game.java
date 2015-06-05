@@ -15,12 +15,12 @@ public class Game extends Canvas implements Runnable{
 	public static int width = 300;
 	public static int height = 168;
 	public static int scale = 3;
-	public String title = "First 2D Game";
+
 
 	private Thread thread;
 	private JFrame frame;
 	private boolean running = false;
-
+	private String title = "First 2D Game";
 
 	private Screen screen;
 
@@ -68,7 +68,6 @@ public class Game extends Canvas implements Runnable{
 			}
 			render();
 			frames++;
-
 			if(System.currentTimeMillis()- timer > 1000){
 				timer += 1000;
 				System.out.println(updates + " ups, " + frames + " fps");
@@ -80,8 +79,11 @@ public class Game extends Canvas implements Runnable{
 		stop();
 	}
 
-	public void update() {
+	public int x = 0, y = 0;
 
+	public void update() {
+		x++;
+		y++;
 	}
 
 	public void render() {
@@ -93,7 +95,7 @@ public class Game extends Canvas implements Runnable{
 
 		screen.clear();
 
-		screen.render();
+		screen.render(x,y);
 
 		for(int i = 0; i < pixel.length; i ++) {
 			pixel[i] = screen.pixels[i];
