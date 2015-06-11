@@ -1,6 +1,7 @@
 package com.jacat.First2DGame;
 
 import com.jacat.First2DGame.graphics.Screen;
+import com.jacat.First2DGame.input.Keyboard;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,6 +20,7 @@ public class Game extends Canvas implements Runnable{
 
 	private Thread thread;
 	private JFrame frame;
+	private Keyboard key;
 	private boolean running = false;
 	private String title = "First 2D Game";
 
@@ -32,8 +34,11 @@ public class Game extends Canvas implements Runnable{
 		setPreferredSize(size);
 
 		screen = new Screen(width,height);
-
 		frame = new JFrame();
+		key = new Keyboard();
+
+		addKeyListener(key);
+
 	}
 
 	public synchronized void start()  {
@@ -82,8 +87,11 @@ public class Game extends Canvas implements Runnable{
 	public int x = 0, y = 0;
 
 	public void update() {
-		x++;
-		y++;
+		key.update();
+		if(key.up) y--;
+		if(key.down) y++;
+		if(key.left) x--;
+		if(key.right) x++;
 	}
 
 	public void render() {
